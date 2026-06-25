@@ -35,43 +35,37 @@ END TEMPLATE-->
 
 ### Breaking changes
 
-*None yet*
-
-### New features
-
-*None yet*
-
-### Bugfixes
-
-*None yet*
-
-### Other
-
-* Optimise Direction and DirectionFlag methods.
-
-### Internal
-
-*None yet*
-
-
-## 277.2.0
-
-### Breaking changes
-
 * Remove the duplicate serialization copy of components kept on ComponentRegistryEntry; now it only stores the deserialized component. To get the raw MappingDataNode for EntityPrototypes use PrototypeManager. This is expected to significantly reduce memory usage.
 * Obsolete LocalRotation in favor of the system method. The angle is now also normalized to 2PI and no longer grows indefinitely.
 
 ### New features
 
+* Add a `OnlyRotation` property to MoveEvent where the EntityCoordinates remain the same.
+* ValueList now implements IList and not just IEnumerable.
 * Add a BoundUserInterfaceMessageReceivedEvent that will be raised whenever a BoundUserInterfaceMessage is received regardless of validation.
+* Added `IsHardCollidable` to `SharedPhysicsSystem`.
+* Added `GetFilledTileCount` to `SharedMapSystem`.
+* Changed the cursors on interactive controls.
+* Added new `StyleProperty` `track` to `ScrollBar` that takes a `StyleBox` and displays it as a backing track for the whole height of the `ScrollBar`.
+* Scroll Lock is now a bindable key.
 
 ### Bugfixes
 
+* Fix ValueList TryPop not clearing element references.
+* Fix ValueList Peek always throwing by referencing the wrong index.
 * Windows will stay at relative position not absolute pixel position on window resize.
+* Fixed override properties in `WrapContainer` not actually overriding the Style Properties.
+* Fixed `BoxContainer`'s `SeparationOverride` not overriding the Style Properties.
+* Fixed `SeparationOverride` not invalidating measure.
+* Fixed swapped parameters in `MapManager`'s `FindGridsIntersecting` methods.
 
 ### Other
 
-* Changed default auth server URL.
+* Optimise Direction and DirectionFlag methods.
+* Added Pure attributes to the `EntityLookup` bounds methods.
+* Improved performance of collision filter test.
+* Removed an outdated xmldoc comment regarding dependency injection.
+* Audio resources now use `AsSpan` when checking signatures.
 
 ### Internal
 
@@ -82,7 +76,7 @@ END TEMPLATE-->
 * Simplify and optimise Box2.Contains(Vector2)
 * Optimise ComponentRegistry deserialization slightly.
 * Optimise Box2Rotated.TransformBox slightly.
-
+* Added several test helpers to avoid boilerplate in integration tests around client connection / disconnection.
 
 ## 277.2.1
 
